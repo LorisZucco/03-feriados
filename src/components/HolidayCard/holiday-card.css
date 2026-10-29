@@ -1,0 +1,55 @@
+/* INICIO LISTA DE FERIADOS */
+
+.holiday-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+.holiday-date {
+  min-width: 92px;
+  font-weight: bold;
+}
+
+.holiday-info {
+  flex: 1;
+}
+
+.holiday-info h2 {
+  font-size: 16px;
+}
+
+.holiday-info p {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.long-weekend {
+  background-color: #1e7d32;
+}
+
+.weekend {
+  background-color: #6b7280;
+}
+
+.holiday-card.past {
+  color: #6b7280;
+}
+
+.bridge {
+  background-color: #9a3412;
+}
+
+/* FIM DA LISTA DE FERIADOS */

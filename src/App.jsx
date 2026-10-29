@@ -6,6 +6,7 @@ import holidays from "./data/holidays";
 // Components imports
 import Header from "./components/Header";
 import NextHoliday from "./components/NextHoliday";
+import HolidayCard from "./components/HolidayCard";
 
 function App() {
   return (
@@ -16,16 +17,13 @@ function App() {
       <p className="count">X feriados em 2026</p>
       <main className="holiday-list">
         {holidays.map((item) => (
-          <article className="holiday-card" key={item.date}>
-            <p className="holiday-date">{item.date}</p>
-
-            <div className="holiday-info">
-              <h2> {item.name}</h2>
-              <p>{item.weekday}</p>
-            </div>
-
-            <span className="tag weekend">{item.type}</span>
-          </article>
+          <HolidayCard
+            key={item.date}
+            date={item.date}
+            name={item.name}
+            weekday={item.weekday}
+            type={item.type}
+          />
         ))}
       </main>
     </>
