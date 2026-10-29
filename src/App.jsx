@@ -1,14 +1,15 @@
-import holidays from "./data/holidays";
 import "./App.css";
+
+// Mocked data
+import holidays from "./data/holidays";
+
+// Components imports
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <header className="header">
-        <h1>Próximo Feriado</h1>
-        <p>Feriados nacioanis do Brasil</p>
-      </header>
-
+      <Header />
       <section className="next-holiday">
         <p>O próximo é</p>
         <h2>Finados</h2>
