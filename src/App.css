@@ -13,3 +13,12 @@
   gap: 12px;
   margin-bottom: 22px;
 }
+status {
+  padding: 24px;
+  text-align: center;
+}
+
+.error {
+  color: #b91c1c;
+  font-weight: bold;
+}
