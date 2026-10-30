@@ -1,7 +1,5 @@
 import "./year-form.css";
 
-import React from "react";
-
 export default function YearForm() {
   return (
     <form className="year-form">

@@ -9,6 +9,7 @@
 
 .year-row {
   display: flex;
+  gap: 8px;
 }
 
 .year-row input {

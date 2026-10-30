@@ -8,3 +8,8 @@
   font-size: 14px;
   color: #4b5563;
 }
+.filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 22px;
+}
