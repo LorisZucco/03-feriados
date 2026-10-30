@@ -7,13 +7,16 @@ import holidays from "./data/holidays";
 import Header from "./components/Header";
 import NextHoliday from "./components/NextHoliday";
 import HolidayCard from "./components/HolidayCard";
+import YearForm from "./components/YearForm";
 
 function App() {
   return (
     <>
       <Header />
       <NextHoliday />
-
+      <section className="filters">
+        <YearForm />
+      </section>
       <p className="count">X feriados em 2026</p>
       <main className="holiday-list">
         {holidays.map((item) => (

@@ -1,0 +1,38 @@
+.year-form {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.year-row {
+  display: flex;
+}
+
+.year-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.year-row button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: #1f4e79;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.year-row button:disabled {
+  background-color: #9ca3af;
+}
+.filters {
+  display: flex;
+  gap: 12px;
+}
