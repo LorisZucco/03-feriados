@@ -19,6 +19,7 @@ function App() {
   const [holidays, setHolidays] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [year, setYear] = useState("2026");
 
   useEffect(() => {
     async function loadHolidays() {
@@ -26,7 +27,7 @@ function App() {
       setErrorMessage("");
 
       try {
-        const response = await fetch(`${apiURL}2026`);
+        const response = await fetch(`${apiURL}${year}`);
         const data = await response.json();
         if (response.ok == false) {
           setErrorMessage(data.message);
@@ -47,7 +48,7 @@ function App() {
     }
 
     loadHolidays();
-  }, []);
+  }, [year]);
 
   const isVisible = holidays.filter((holiday) => {
     return month == "" || holiday.date.includes(`-${month}-`);
@@ -63,7 +64,7 @@ function App() {
     content = (
       <>
         <p className="count">
-          <span>{isVisible.length}</span> feriados em 2026
+          <span>{isVisible.length}</span> feriados em <span>{year}</span>
         </p>
       </>
     );
@@ -75,7 +76,7 @@ function App() {
       <NextHoliday />
 
       <section className="filters">
-        <YearForm />
+        <YearForm year={year} onSearch={setYear} />
         <MonthFilter month={month} onChange={setMonth} />
       </section>
 
@@ -84,7 +85,7 @@ function App() {
       ) : (
         <>
           <p className="count">
-            <span>{isVisible.length}</span> feriados em 2026
+            <span>{isVisible.length}</span> feriados em <span>{year}</span>
           </p>
 
           <main className="holiday-list">
