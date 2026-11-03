@@ -13,6 +13,7 @@ import YearForm from "./components/YearForm";
 // import holidays from "./data/holidays";
 
 const apiURL = "https://brasilapi.com.br/api/feriados/v1/";
+const openedAt = new Date();
 
 function App() {
   const [month, setMonth] = useState("");
@@ -29,6 +30,7 @@ function App() {
       try {
         const response = await fetch(`${apiURL}${year}`);
         const data = await response.json();
+
         if (response.ok == false) {
           setErrorMessage(data.message);
           setHolidays([]);
@@ -38,6 +40,7 @@ function App() {
         }
 
         setHolidays(data);
+        //console.log(data);
       } catch (error) {
         console.log(error);
         setErrorMessage("Erro ao realizar a consulta");
@@ -53,53 +56,57 @@ function App() {
   const isVisible = holidays.filter((holiday) => {
     return month == "" || holiday.date.includes(`-${month}-`);
   });
+
+  const upcomingHolidays = holidays.filter((holiday) => {
+    return new Date(`${holiday.date}T23:59:59`) >= openedAt;
+  });
+
+  // console.log(openedAt);
+  // console.log(upcomingHolidays);
+
   let content = "";
+
   if (loading) {
-    content = <p className="status">Carregando feriado...</p>;
+    content = <p className="status">Carregando feriados...</p>;
   } else if (errorMessage != "") {
     content = <p className="status error">{errorMessage}</p>;
   } else if (isVisible.length == 0) {
-    content = <p className="status">Nenhum feriado neste mês</p>;
+    content = <p className="empty">Nenhum feriado neste mês</p>;
   } else {
     content = (
       <>
         <p className="count">
-          <span>{isVisible.length}</span> feriados em <span>{year}</span>
+          <span>{isVisible.length}</span> feriados em {year}
         </p>
+
+        <main className="holiday-list">
+          {isVisible.map((item) => (
+            <Holidaycard
+              key={item.date}
+              date={item.date}
+              name={item.name}
+              weekday={item.weekday}
+            />
+          ))}
+        </main>
       </>
     );
   }
+
   return (
     <>
       <Header />
 
-      <NextHoliday />
+      {upcomingHolidays.length > 0 && (
+        <NextHoliday holiday={upcomingHolidays[0]} />
+      )}
 
       <section className="filters">
         <YearForm year={year} onSearch={setYear} />
         <MonthFilter month={month} onChange={setMonth} />
       </section>
 
-      {loading ? (
-        <p>Carregando..</p>
-      ) : (
-        <>
-          <p className="count">
-            <span>{isVisible.length}</span> feriados em <span>{year}</span>
-          </p>
-
-          <main className="holiday-list">
-            {isVisible.map((item) => (
-              <Holidaycard
-                key={item.date}
-                date={item.date}
-                name={item.name}
-                weekday={item.weekday}
-              />
-            ))}
-          </main>
-        </>
-      )}
+      {content}
     </>
   );
 }
